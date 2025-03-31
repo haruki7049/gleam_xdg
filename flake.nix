@@ -71,7 +71,7 @@
               # Gleam-lang
               pkgs.gleam
               pkgs.erlang
-              #pkgs.rebar3
+              pkgs.rebar3
               #pkgs.elixir
               #pkgs.deno
             ];
