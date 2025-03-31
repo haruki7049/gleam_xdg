@@ -1,8 +1,8 @@
 import gleam/io
-import gleam_xdg
+import xdgleam
 
 pub fn main() {
-  let base_dirs = gleam_xdg.new()
+  let base_dirs = xdgleam.new()
 
   io.println(base_dirs.config_home)
 }
