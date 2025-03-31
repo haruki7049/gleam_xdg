@@ -1,5 +1,7 @@
 # gleam_xdg
 
+A tool to read XDG Base Directory in pure Gleam-lang.
+
 ## Development
 
 ```sh
