@@ -24,24 +24,29 @@ pub type ErrorKind {
   AnyError
 }
 
+@deprecated("Use xdgleam/xdg instead")
 pub fn new() -> BaseDirectory {
+  xdg()
+}
+
+pub fn xdg() -> BaseDirectory {
   // Reads $HOME
   let home_directory: String =
-    read_home()
+    home()
     |> result.unwrap("")
 
   // Reads $XDG_CONFIG_DIRS
   let config_directories: List(String) =
-    read_config_dirs()
+    config_dirs()
     |> result.unwrap(["/etc/xdg"])
 
   // Reads $XDG_DATA_DIRS
   let data_directories: List(String) =
-    read_data_dirs()
+    data_dirs()
     |> result.unwrap(["/usr/local/share", "/usr/share"])
 
   let runtime_directory: Option(String) =
-    read_runtime_dirs()
+    runtime_dirs()
     |> result.unwrap(None)
 
   BaseDirectory(
@@ -56,7 +61,7 @@ pub fn new() -> BaseDirectory {
 }
 
 /// Reads $HOME
-pub fn read_home() -> Result(String, Nil) {
+pub fn home() -> Result(String, Nil) {
   let value =
     envoy.get("HOME")
     |> result.unwrap("")
@@ -64,8 +69,13 @@ pub fn read_home() -> Result(String, Nil) {
   Ok(value)
 }
 
-/// Reads $XDG_CONFIG_DIRS
-pub fn read_config_dirs() -> Result(List(String), Nil) {
+/// Reads $HOME
+@deprecated("Use xdgleam/home instead")
+pub fn read_home() -> Result(String, Nil) {
+  home()
+}
+
+pub fn config_dirs() -> Result(List(String), Nil) {
   let value =
     envoy.get("XDG_CONFIG_DIRS")
     |> result.unwrap("")
@@ -77,7 +87,13 @@ pub fn read_config_dirs() -> Result(List(String), Nil) {
 }
 
 /// Reads $XDG_CONFIG_DIRS
-pub fn read_data_dirs() -> Result(List(String), Nil) {
+@deprecated("Use xdgleam/config_dirs instead")
+pub fn read_config_dirs() -> Result(List(String), Nil) {
+  config_dirs()
+}
+
+/// Reads $XDG_CONFIG_DIRS
+pub fn data_dirs() -> Result(List(String), Nil) {
   let value =
     envoy.get("XDG_DATA_DIRS")
     |> result.unwrap("")
@@ -88,11 +104,23 @@ pub fn read_data_dirs() -> Result(List(String), Nil) {
   )
 }
 
+/// Reads $XDG_CONFIG_DIRS
+@deprecated("Use xdgleam/data_dirs instead")
+pub fn read_data_dirs() -> Result(List(String), Nil) {
+  data_dirs()
+}
+
 /// Reads $XDG_RUNTIME_DIR
-pub fn read_runtime_dirs() -> Result(Option(String), Nil) {
+pub fn runtime_dirs() -> Result(Option(String), Nil) {
   let value =
     envoy.get("XDG_RUNTIME_DIR")
     |> result.unwrap("")
 
   Ok(Some(value))
+}
+
+/// Reads $XDG_RUNTIME_DIR
+@deprecated("Use xdgleam/runtime_dirs instead")
+pub fn read_runtime_dirs() -> Result(Option(String), Nil) {
+  runtime_dirs()
 }

@@ -9,8 +9,8 @@ pub fn main() {
   gleeunit.main()
 }
 
-/// The test for xdgleam/read_home function
-pub fn read_home_test() {
+/// The test for xdgleam/home function
+pub fn home_test() {
   // Backup original HOME envvar
   let home_backup: String =
     envoy.get("HOME")
@@ -18,7 +18,7 @@ pub fn read_home_test() {
 
   envoy.set("HOME", "/home/haruki")
 
-  xdgleam.read_home()
+  xdgleam.home()
   |> result.unwrap("")
   |> should.equal("/home/haruki")
 
@@ -26,8 +26,8 @@ pub fn read_home_test() {
   envoy.set("HOME", home_backup)
 }
 
-/// The test for xdgleam/read_config_dirs function
-pub fn read_config_dirs_test() {
+/// The test for xdgleam/config_dirs function
+pub fn config_dirs_test() {
   // Backup original HOME envvar
   let config_dirs_backup: String =
     envoy.get("XDG_CONFIG_DIRS")
@@ -38,7 +38,7 @@ pub fn read_config_dirs_test() {
     "/etc/xdg:/home/haruki/.local/state/nix/profile/etc/xdg",
   )
 
-  xdgleam.read_config_dirs()
+  xdgleam.config_dirs()
   |> result.unwrap([])
   |> should.equal(["/etc/xdg", "/home/haruki/.local/state/nix/profile/etc/xdg"])
 
@@ -46,8 +46,8 @@ pub fn read_config_dirs_test() {
   envoy.set("XDG_CONFIG_DIRS", config_dirs_backup)
 }
 
-/// The test for xdgleam/read_config_dirs function
-pub fn read_data_dirs_test() {
+/// The test for xdgleam/config_dirs function
+pub fn data_dirs_test() {
   // Backup original HOME envvar
   let data_dirs_backup: String =
     envoy.get("XDG_DATA_DIRS")
@@ -55,7 +55,7 @@ pub fn read_data_dirs_test() {
 
   envoy.set("XDG_DATA_DIRS", "/usr/local/share:/usr/share")
 
-  xdgleam.read_data_dirs()
+  xdgleam.data_dirs()
   |> result.unwrap([])
   |> should.equal(["/usr/local/share", "/usr/share"])
 
@@ -63,8 +63,8 @@ pub fn read_data_dirs_test() {
   envoy.set("XDG_CONFIG_DIRS", data_dirs_backup)
 }
 
-/// The test for xdgleam/read_home function
-pub fn read_runtime_dirs_test() {
+/// The test for xdgleam/home function
+pub fn runtime_dirs_test() {
   // Backup original HOME envvar
   let runtime_dir_backup: String =
     envoy.get("XDG_RUNTIME_DIR")
@@ -72,7 +72,7 @@ pub fn read_runtime_dirs_test() {
 
   envoy.set("XDG_RUNTIME_DIR", "/run/user/1000")
 
-  xdgleam.read_runtime_dirs()
+  xdgleam.runtime_dirs()
   |> result.unwrap(None)
   |> should.equal(Some("/run/user/1000"))
 
