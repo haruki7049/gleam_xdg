@@ -1,6 +1,6 @@
 # xdgleam
 
-A tool to read XDG Base Directory in pure Gleam-lang.
+A library to read XDG Base Directory in pure Gleam-lang.
 
 [![Package Version](https://img.shields.io/hexpm/v/xdgleam)](https://hex.pm/packages/xdgleam)
 [![Hex Docs](https://img.shields.io/badge/hex-docs-ffaff3)](https://hexdocs.pm/xdgleam/)

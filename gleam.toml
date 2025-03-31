@@ -1,5 +1,8 @@
 name = "xdgleam"
 version = "1.0.0"
+description = "A library to read XDG Base Directory in pure Gleam-lang"
+licenses = ["Apache-2.0"]
+repository = { type = "github", user = "haruki7049", repo = "xdgleam" }
 
 # Fill out these fields if you intend to generate HTML documentation or publish
 # your project to the Hex package manager.
