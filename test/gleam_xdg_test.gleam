@@ -9,8 +9,8 @@ pub fn main() {
 }
 
 /// The test for gleam_xdg/read_home function
-/// FIXME: Rewrite to use Mock
 pub fn read_home_test() {
+  // Backup original HOME envvar
   let home_backup: String =
     envoy.get("HOME")
     |> result.unwrap("ERROR")
@@ -21,5 +21,6 @@ pub fn read_home_test() {
   |> result.unwrap("")
   |> should.equal("/home/haruki")
 
+  // Cleanup process
   envoy.set("HOME", home_backup)
 }
