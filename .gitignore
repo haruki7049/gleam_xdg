@@ -1,0 +1,9 @@
+# Gleam-lang
+*.beam
+*.ez
+/build
+erl_crash.dump
+
+# Nix
+result
+.direnv/
